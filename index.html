@@ -3,397 +3,445 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아커스 - 비즈니스 솔루션 전문</title>
-    <meta name="description" content="아커스는 혁신적인 비즈니스 솔루션을 제공하는 전문 기업입니다. 웹 개발, 디지털 마케팅, 컨설팅 서비스를 제공합니다.">
-    <meta name="keywords" content="아커스, 비즈니스 솔루션, 웹개발, 디지털마케팅, 컨설팅">
+    <title>수리나인 - 비즈니스 솔루션</title>
+    <meta name="description" content="수리나인은 혁신적인 비즈니스 솔루션을 제공하는 전문 기업입니다.">
     
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Custom Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            200: '#bfdbfe',
-                            300: '#93c5fd',
-                            400: '#60a5fa',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            800: '#1e40af',
-                            900: '#1e3a8a',
-                        }
-                    },
-                    fontFamily: {
-                        'sans': ['Pretendard', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Ionic Framework CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
     
     <!-- Pretendard Font -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     
     <!-- Custom Styles -->
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        :root {
+            --ion-font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
         }
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
+        
+        /* Custom Ionic Variables */
+        :root {
+            --ion-color-primary: #2563eb;
+            --ion-color-primary-rgb: 37, 99, 235;
+            --ion-color-primary-contrast: #ffffff;
+            --ion-color-primary-contrast-rgb: 255, 255, 255;
+            --ion-color-primary-shade: #2156d1;
+            --ion-color-primary-tint: #3b73ed;
+            
+            --ion-color-secondary: #64748b;
+            --ion-color-secondary-rgb: 100, 116, 139;
+            --ion-color-secondary-contrast: #ffffff;
+            --ion-color-secondary-contrast-rgb: 255, 255, 255;
+            --ion-color-secondary-shade: #58667a;
+            --ion-color-secondary-tint: #74828a;
+            
+            --ion-color-tertiary: #f1f5f9;
+            --ion-color-tertiary-rgb: 241, 245, 249;
+            --ion-color-tertiary-contrast: #000000;
+            --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+            --ion-color-tertiary-shade: #d4d8dc;
+            --ion-color-tertiary-tint: #f2f6fa;
+        }
+        
+        /* Native App Styling */
+        .native-header {
+            --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --color: white;
+            --border-width: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .native-card {
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin: 8px;
+        }
+        
+        .native-button {
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            font-weight: 600;
+        }
+        
+        .native-tab-bar {
+            --background: #ffffff;
+            --border: 1px solid #e2e8f0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .native-tab-button {
+            --color: #64748b;
+            --color-selected: #2563eb;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* Tablet Responsive */
+        @media (min-width: 768px) {
+            .tablet-split {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            
+            .tablet-full {
+                grid-column: 1 / -1;
+            }
+            
+            .tablet-sidebar {
+                display: block;
+            }
+            
+            .tablet-main {
+                padding: 16px;
+            }
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 767px) {
+            .mobile-hidden {
+                display: none;
+            }
+            
+            .mobile-full {
+                width: 100%;
+            }
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+        
+        /* Service Cards */
+        .service-card {
+            text-align: center;
+            padding: 24px;
+            height: 100%;
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
         }
     </style>
 </head>
-<body class="font-sans text-gray-900">
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold text-primary-600">아커스</h1>
+<body>
+    <!-- Ionic App -->
+    <ion-app>
+        <!-- Main Content -->
+        <ion-content>
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="ion-padding">
+                    <h1 class="hero-title">수리나인</h1>
+                    <p class="hero-subtitle">혁신적인 비즈니스 솔루션으로 성공을 만들어가세요</p>
+                    <ion-button class="native-button" size="large" fill="solid">
+                        <ion-icon name="arrow-forward" slot="end"></ion-icon>
+                        서비스 보기
+                    </ion-button>
                 </div>
-                
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">홈</a>
-                    <a href="#about" class="nav-link text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">회사소개</a>
-                    <a href="#services" class="nav-link text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">서비스</a>
-                    <a href="#portfolio" class="nav-link text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">포트폴리오</a>
-                    <a href="#contact" class="nav-link text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">연락처</a>
-                </nav>
-                
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-primary-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
-                        <span class="sr-only">메뉴 열기</span>
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Navigation -->
-        <div class="mobile-menu hidden md:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
-                <a href="#home" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md">홈</a>
-                <a href="#about" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md">회사소개</a>
-                <a href="#services" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md">서비스</a>
-                <a href="#portfolio" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md">포트폴리오</a>
-                <a href="#contact" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md">연락처</a>
-            </div>
-        </div>
-    </header>
+            </section>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="gradient-bg text-white pt-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-8">
-                        <h2 class="text-4xl md:text-6xl font-bold leading-tight">
-                            혁신적인<br>
-                            <span class="text-yellow-300">비즈니스 솔루션</span>
-                        </h2>
-                        <p class="text-xl text-gray-200 leading-relaxed">
-                            아커스와 함께 디지털 시대의 성공을 만들어가세요.<br>
-                            전문적인 서비스로 비즈니스의 미래를 설계합니다.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="#services" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-lg text-primary-600 bg-white hover:bg-gray-50 transition-colors">
-                                서비스 보기
-                            </a>
-                            <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-base font-medium rounded-lg text-white hover:bg-white hover:text-primary-600 transition-colors">
-                                문의하기
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex justify-center">
-                        <div class="w-full max-w-md h-80 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20">
-                            <span class="text-2xl text-white/80">비즈니스 이미지</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-20 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">회사소개</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        아커스는 고객의 성공을 위한 최고의 솔루션을 제공합니다
-                    </p>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                    <div class="space-y-8">
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4">우리의 미션</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                디지털 혁신을 통해 고객의 비즈니스 가치를 극대화하고, 
-                                지속가능한 성장을 지원하는 것이 아커스의 미션입니다.
-                            </p>
-                        </div>
+            <!-- Main Content Area -->
+            <div class="ion-padding">
+                <!-- About Section -->
+                <ion-card class="native-card">
+                    <ion-card-header>
+                        <ion-card-title>회사소개</ion-card-title>
+                        <ion-card-subtitle>수리나인의 미션과 가치</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <p>디지털 혁신을 통해 고객의 비즈니스 가치를 극대화하고, 지속가능한 성장을 지원하는 것이 수리나인의 미션입니다.</p>
                         
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4">핵심 가치</h3>
-                            <ul class="space-y-3">
-                                <li class="flex items-center">
-                                    <svg class="w-5 h-5 text-primary-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    <span class="text-gray-600">혁신과 창의성</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <svg class="w-5 h-5 text-primary-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    <span class="text-gray-600">고객 중심의 서비스</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <svg class="w-5 h-5 text-primary-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    <span class="text-gray-600">품질과 신뢰성</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <svg class="w-5 h-5 text-primary-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    <span class="text-gray-600">지속가능한 성장</span>
-                                </li>
-                            </ul>
+                        <!-- Stats Grid -->
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">50+</div>
+                                <div class="stat-label">완료 프로젝트</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">고객 만족도</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">5년</div>
+                                <div class="stat-label">업계 경험</div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-                            <div class="text-3xl font-bold text-primary-600 mb-2">50+</div>
-                            <div class="text-gray-600">완료 프로젝트</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-                            <div class="text-3xl font-bold text-primary-600 mb-2">100%</div>
-                            <div class="text-gray-600">고객 만족도</div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-                            <div class="text-3xl font-bold text-primary-600 mb-2">5년</div>
-                            <div class="text-gray-600">업계 경험</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    </ion-card-content>
+                </ion-card>
 
-        <!-- Services Section -->
-        <section id="services" class="py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">서비스</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        전문적인 서비스로 고객의 성공을 지원합니다
-                    </p>
-                </div>
+                <!-- Services Section -->
+                <ion-card class="native-card">
+                    <ion-card-header>
+                        <ion-card-title>서비스</ion-card-title>
+                        <ion-card-subtitle>전문적인 서비스로 고객의 성공을 지원합니다</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="12" size-md="4">
+                                    <div class="service-card">
+                                        <span class="service-icon">💻</span>
+                                        <h3>웹 개발</h3>
+                                        <p>반응형 웹사이트와 웹 애플리케이션을 전문적으로 개발합니다.</p>
+                                    </div>
+                                </ion-col>
+                                <ion-col size="12" size-md="4">
+                                    <div class="service-card">
+                                        <span class="service-icon">📱</span>
+                                        <h3>디지털 마케팅</h3>
+                                        <p>효과적인 디지털 마케팅 전략으로 비즈니스 성장을 도모합니다.</p>
+                                    </div>
+                                </ion-col>
+                                <ion-col size="12" size-md="4">
+                                    <div class="service-card">
+                                        <span class="service-icon">🎯</span>
+                                        <h3>비즈니스 컨설팅</h3>
+                                        <p>전문적인 컨설팅을 통해 비즈니스 전략을 수립합니다.</p>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-content>
+                </ion-card>
+
+                <!-- Portfolio Section -->
+                <ion-card class="native-card">
+                    <ion-card-header>
+                        <ion-card-title>포트폴리오</ion-card-title>
+                        <ion-card-subtitle>성공적인 프로젝트 사례를 확인해보세요</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="12" size-md="6" size-lg="4">
+                                    <ion-card>
+                                        <img src="https://via.placeholder.com/300x200/667eea/ffffff?text=프로젝트+1" alt="프로젝트 1">
+                                        <ion-card-header>
+                                            <ion-card-title>E-commerce 플랫폼</ion-card-title>
+                                            <ion-card-subtitle>온라인 쇼핑몰 구축 및 운영</ion-card-subtitle>
+                                        </ion-card-header>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col size="12" size-md="6" size-lg="4">
+                                    <ion-card>
+                                        <img src="https://via.placeholder.com/300x200/764ba2/ffffff?text=프로젝트+2" alt="프로젝트 2">
+                                        <ion-card-header>
+                                            <ion-card-title>기업 웹사이트</ion-card-title>
+                                            <ion-card-subtitle>반응형 기업 홈페이지 개발</ion-card-subtitle>
+                                        </ion-card-header>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col size="12" size-md="6" size-lg="4">
+                                    <ion-card>
+                                        <img src="https://via.placeholder.com/300x200/ec4899/ffffff?text=프로젝트+3" alt="프로젝트 3">
+                                        <ion-card-header>
+                                            <ion-card-title>모바일 앱</ion-card-title>
+                                            <ion-card-subtitle>크로스 플랫폼 모바일 애플리케이션</ion-card-subtitle>
+                                        </ion-card-header>
+                                    </ion-card>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-content>
+                </ion-card>
+
+                <!-- Contact Section -->
+                <ion-card class="native-card">
+                    <ion-card-header>
+                        <ion-card-title>연락처</ion-card-title>
+                        <ion-card-subtitle>프로젝트 문의나 상담이 필요하시면 언제든 연락주세요</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="12" size-md="6">
+                                    <ion-list>
+                                        <ion-item>
+                                            <ion-icon name="mail" slot="start" color="primary"></ion-icon>
+                                            <ion-label>
+                                                <h2>이메일</h2>
+                                                <p>contact@surinain.com</p>
+                                            </ion-label>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-icon name="call" slot="start" color="primary"></ion-icon>
+                                            <ion-label>
+                                                <h2>전화</h2>
+                                                <p>02-1234-5678</p>
+                                            </ion-label>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-icon name="location" slot="start" color="primary"></ion-icon>
+                                            <ion-label>
+                                                <h2>주소</h2>
+                                                <p>서울특별시 강남구 테헤란로 123</p>
+                                            </ion-label>
+                                        </ion-item>
+                                    </ion-list>
+                                </ion-col>
+                                <ion-col size="12" size-md="6">
+                                    <ion-list>
+                                        <ion-item>
+                                            <ion-label position="stacked">이름</ion-label>
+                                            <ion-input placeholder="이름을 입력하세요"></ion-input>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-label position="stacked">이메일</ion-label>
+                                            <ion-input type="email" placeholder="이메일을 입력하세요"></ion-input>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-label position="stacked">메시지</ion-label>
+                                            <ion-textarea placeholder="메시지를 입력하세요" rows="4"></ion-textarea>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-button expand="block" class="native-button">
+                                                <ion-icon name="send" slot="start"></ion-icon>
+                                                문의하기
+                                            </ion-button>
+                                        </ion-item>
+                                    </ion-list>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </ion-content>
+
+        <!-- Bottom Tab Bar -->
+        <ion-tab-bar class="native-tab-bar" slot="bottom">
+            <ion-tab-button tab="home" class="native-tab-button">
+                <ion-icon name="home"></ion-icon>
+                <ion-label>홈</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="about" class="native-tab-button">
+                <ion-icon name="information-circle"></ion-icon>
+                <ion-label>회사소개</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="services" class="native-tab-button">
+                <ion-icon name="business"></ion-icon>
+                <ion-label>서비스</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="portfolio" class="native-tab-button">
+                <ion-icon name="folder"></ion-icon>
+                <ion-label>포트폴리오</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="contact" class="native-tab-button">
+                <ion-icon name="call"></ion-icon>
+                <ion-label>연락처</ion-label>
+            </ion-tab-button>
+        </ion-tab-bar>
+    </ion-app>
+
+    <!-- Ionic Framework JavaScript -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Ionic App Initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab navigation
+            const tabButtons = document.querySelectorAll('ion-tab-button');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tab = this.getAttribute('tab');
+                    scrollToSection(tab);
+                });
+            });
+            
+            // Smooth scroll to section
+            function scrollToSection(sectionId) {
+                const sections = {
+                    'home': '.hero-section',
+                    'about': 'ion-card:nth-child(1)',
+                    'services': 'ion-card:nth-child(2)',
+                    'portfolio': 'ion-card:nth-child(3)',
+                    'contact': 'ion-card:nth-child(4)'
+                };
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                        <div class="text-4xl mb-6">💻</div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">웹 개발</h3>
-                        <p class="text-gray-600 mb-6">
-                            반응형 웹사이트와 웹 애플리케이션을 전문적으로 개발합니다.
-                        </p>
-                        <ul class="space-y-2">
-                            <li class="text-gray-600">• 반응형 웹사이트</li>
-                            <li class="text-gray-600">• 웹 애플리케이션</li>
-                            <li class="text-gray-600">• E-commerce 솔루션</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                        <div class="text-4xl mb-6">📱</div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">디지털 마케팅</h3>
-                        <p class="text-gray-600 mb-6">
-                            효과적인 디지털 마케팅 전략으로 비즈니스 성장을 도모합니다.
-                        </p>
-                        <ul class="space-y-2">
-                            <li class="text-gray-600">• SEO 최적화</li>
-                            <li class="text-gray-600">• 소셜미디어 마케팅</li>
-                            <li class="text-gray-600">• 콘텐츠 마케팅</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                        <div class="text-4xl mb-6">🎯</div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">비즈니스 컨설팅</h3>
-                        <p class="text-gray-600 mb-6">
-                            전문적인 컨설팅을 통해 비즈니스 전략을 수립합니다.
-                        </p>
-                        <ul class="space-y-2">
-                            <li class="text-gray-600">• 디지털 전환</li>
-                            <li class="text-gray-600">• 프로세스 개선</li>
-                            <li class="text-gray-600">• 전략 수립</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="py-20 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">포트폴리오</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        성공적인 프로젝트 사례를 확인해보세요
-                    </p>
-                </div>
+                const target = document.querySelector(sections[sectionId]);
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+            
+            // Add active state to tab buttons
+            function updateActiveTab() {
+                const scrollPosition = window.scrollY;
+                const sections = document.querySelectorAll('ion-card, .hero-section');
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                        <div class="h-48 bg-gray-200 flex items-center justify-center">
-                            <span class="text-gray-500">프로젝트 1</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">E-commerce 플랫폼</h3>
-                            <p class="text-gray-600">온라인 쇼핑몰 구축 및 운영</p>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                        <div class="h-48 bg-gray-200 flex items-center justify-center">
-                            <span class="text-gray-500">프로젝트 2</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">기업 웹사이트</h3>
-                            <p class="text-gray-600">반응형 기업 홈페이지 개발</p>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                        <div class="h-48 bg-gray-200 flex items-center justify-center">
-                            <span class="text-gray-500">프로젝트 3</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">모바일 앱</h3>
-                            <p class="text-gray-600">크로스 플랫폼 모바일 애플리케이션</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">연락처</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        프로젝트 문의나 상담이 필요하시면 언제든 연락주세요
-                    </p>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div class="space-y-8">
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-900">이메일</h3>
-                                <p class="text-gray-600">contact@awekers.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-900">전화</h3>
-                                <p class="text-gray-600">02-1234-5678</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-900">주소</h3>
-                                <p class="text-gray-600">서울특별시 강남구 테헤란로 123</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-8 rounded-xl">
-                        <form class="space-y-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">이름</label>
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">이메일</label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">제목</label>
-                                <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">메시지</label>
-                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-primary-700 transition-colors">
-                                문의하기
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <h3 class="text-2xl font-bold mb-2">아커스</h3>
-                    <p class="text-gray-400">혁신적인 비즈니스 솔루션</p>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <a href="#about" class="text-gray-400 hover:text-white transition-colors">회사소개</a>
-                    <a href="#services" class="text-gray-400 hover:text-white transition-colors">서비스</a>
-                    <a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">포트폴리오</a>
-                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors">연락처</a>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 아커스. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+                sections.forEach((section, index) => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        // Remove active from all tabs
+                        tabButtons.forEach(btn => btn.classList.remove('tab-selected'));
+                        // Add active to corresponding tab
+                        if (index === 0) tabButtons[0].classList.add('tab-selected');
+                        else if (index === 1) tabButtons[1].classList.add('tab-selected');
+                        else if (index === 2) tabButtons[2].classList.add('tab-selected');
+                        else if (index === 3) tabButtons[3].classList.add('tab-selected');
+                        else if (index === 4) tabButtons[4].classList.add('tab-selected');
+                    }
+                });
+            }
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', updateActiveTab);
+            
+            // Initialize
+            updateActiveTab();
+        });
+    </script>
 </body>
 </html>
-<!-- 테스트 업데이트: Thu Oct 30 12:27:46 KST 2025 -->

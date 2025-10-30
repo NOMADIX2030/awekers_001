@@ -134,6 +134,10 @@ body {
     transition: all 0.3s ease;
     display: inline-block;
     border: 2px solid transparent;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .ai_btn_primary {
@@ -146,6 +150,12 @@ body {
     transform: translateY(-2px);
 }
 
+.ai_btn_primary:active {
+    background: #1e40af;
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
 .ai_btn_secondary {
     background: transparent;
     color: white;
@@ -155,6 +165,11 @@ body {
 .ai_btn_secondary:hover {
     background: white;
     color: #2563eb;
+}
+
+.ai_btn_secondary:active {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(0);
 }
 
 .ai_hero_image {
@@ -285,11 +300,20 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .ai_service_card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.ai_service_card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .ai_service_icon {
@@ -348,11 +372,20 @@ body {
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .ai_portfolio_item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.ai_portfolio_item:active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .ai_portfolio_image {
@@ -657,108 +690,331 @@ body {
     }
 }
 
-/* Responsive Design */
+/* Mobile Native App Design */
 @media (max-width: 768px) {
     .ai_mobile_menu_toggle {
         display: flex;
+    }
+    
+    /* 모바일 컨테이너 패딩 조정 */
+    .ai_container {
+        padding: 0 16px;
+    }
+    
+    /* 히어로 섹션 - 네이티브 앱 스타일 */
+    .ai_hero {
+        padding: 100px 0 60px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
     }
     
     .ai_hero_container {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 40px;
+        padding: 0 16px;
     }
     
     .ai_hero_title {
-        font-size: 36px;
+        font-size: 32px;
+        line-height: 1.2;
+        margin-bottom: 16px;
     }
     
     .ai_hero_subtitle {
         font-size: 18px;
+        margin-bottom: 32px;
+        opacity: 0.9;
     }
     
     .ai_hero_buttons {
         justify-content: center;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+    }
+    
+    .ai_btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 16px 24px;
+        font-size: 16px;
+        border-radius: 12px;
+        text-align: center;
     }
     
     .ai_hero_placeholder {
         width: 100%;
-        max-width: 300px;
+        max-width: 280px;
         height: 200px;
+        margin: 0 auto;
+    }
+    
+    /* 회사소개 섹션 - 카드 스타일 */
+    .ai_about {
+        padding: 60px 0;
     }
     
     .ai_about_content {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 32px;
+    }
+    
+    .ai_about_text {
+        background: white;
+        padding: 24px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
     
     .ai_about_stats {
-        flex-direction: row;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
     
     .ai_stat_item {
-        padding: 20px;
-        flex: 1;
-        margin: 0 10px;
+        padding: 24px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        margin: 0;
+    }
+    
+    .ai_stat_number {
+        font-size: 32px;
+        margin-bottom: 8px;
+    }
+    
+    /* 서비스 섹션 - 카드 그리드 */
+    .ai_services {
+        padding: 60px 0;
     }
     
     .ai_services_grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .ai_service_card {
+        padding: 24px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        margin-bottom: 16px;
+    }
+    
+    .ai_service_icon {
+        font-size: 40px;
+        margin-bottom: 16px;
+    }
+    
+    .ai_service_card h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    
+    /* 포트폴리오 섹션 - 카드 스타일 */
+    .ai_portfolio {
+        padding: 60px 0;
     }
     
     .ai_portfolio_grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .ai_portfolio_item {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        margin-bottom: 16px;
+    }
+    
+    .ai_portfolio_image {
+        height: 180px;
+    }
+    
+    .ai_portfolio_content {
+        padding: 20px;
+    }
+    
+    /* 연락처 섹션 - 모바일 최적화 */
+    .ai_contact {
+        padding: 60px 0;
     }
     
     .ai_contact_content {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 32px;
+    }
+    
+    .ai_contact_info {
+        gap: 20px;
+    }
+    
+    .ai_contact_item {
+        background: white;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .ai_contact_form {
+        padding: 24px;
+        border-radius: 16px;
+    }
+    
+    .ai_form_group input,
+    .ai_form_group textarea {
+        padding: 16px;
+        font-size: 16px;
+        border-radius: 12px;
+    }
+    
+    /* 푸터 - 모바일 최적화 */
+    .ai_footer {
+        padding: 40px 0 20px;
     }
     
     .ai_footer_content {
         flex-direction: column;
-        gap: 30px;
+        gap: 24px;
         text-align: center;
     }
     
     .ai_footer_links {
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .ai_footer_links a {
+        padding: 12px 0;
+        font-size: 16px;
     }
 }
 
+/* Small Mobile Native App Design */
 @media (max-width: 480px) {
     .ai_container {
-        padding: 0 15px;
+        padding: 0 12px;
     }
     
+    /* 히어로 섹션 - 작은 모바일 최적화 */
     .ai_hero {
-        padding: 100px 0 60px;
+        padding: 80px 0 40px;
+        min-height: 100vh;
     }
     
     .ai_hero_title {
         font-size: 28px;
+        line-height: 1.3;
     }
     
     .ai_hero_subtitle {
         font-size: 16px;
+        margin-bottom: 24px;
     }
     
+    .ai_btn {
+        padding: 14px 20px;
+        font-size: 15px;
+        max-width: 100%;
+    }
+    
+    .ai_hero_placeholder {
+        height: 160px;
+        max-width: 240px;
+    }
+    
+    /* 섹션 제목 */
     .ai_section_title {
-        font-size: 28px;
+        font-size: 24px;
+        margin-bottom: 12px;
     }
     
-    .ai_about_stats {
-        flex-direction: column;
+    .ai_section_subtitle {
+        font-size: 16px;
+    }
+    
+    /* 회사소개 - 작은 모바일 */
+    .ai_about_text {
+        padding: 20px;
+    }
+    
+    .ai_about_text h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
     }
     
     .ai_stat_item {
+        padding: 20px;
         margin: 0;
+    }
+    
+    .ai_stat_number {
+        font-size: 28px;
+    }
+    
+    /* 서비스 카드 - 작은 모바일 */
+    .ai_service_card {
+        padding: 20px;
+        margin-bottom: 12px;
+    }
+    
+    .ai_service_icon {
+        font-size: 36px;
+        margin-bottom: 12px;
+    }
+    
+    .ai_service_card h3 {
+        font-size: 18px;
+    }
+    
+    /* 포트폴리오 - 작은 모바일 */
+    .ai_portfolio_item {
+        margin-bottom: 12px;
+    }
+    
+    .ai_portfolio_image {
+        height: 160px;
+    }
+    
+    .ai_portfolio_content {
+        padding: 16px;
+    }
+    
+    .ai_portfolio_content h3 {
+        font-size: 18px;
+    }
+    
+    /* 연락처 - 작은 모바일 */
+    .ai_contact_item {
+        padding: 16px;
     }
     
     .ai_contact_form {
         padding: 20px;
+    }
+    
+    .ai_form_group input,
+    .ai_form_group textarea {
+        padding: 14px;
+        font-size: 15px;
+    }
+    
+    /* 푸터 - 작은 모바일 */
+    .ai_footer {
+        padding: 32px 0 16px;
+    }
+    
+    .ai_footer_logo h3 {
+        font-size: 20px;
+    }
+    
+    .ai_footer_links a {
+        font-size: 15px;
+        padding: 10px 0;
     }
 }

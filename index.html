@@ -75,7 +75,15 @@
             font-weight: 500;
         }
         
-        /* Tablet Responsive */
+        /* PC/Tablet Responsive - Max Width 1024px */
+        .app-container {
+            max-width: 1024px;
+            margin: 0 auto;
+            background: #f8fafc;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
         @media (min-width: 768px) {
             .tablet-split {
                 display: grid;
@@ -94,6 +102,66 @@
             .tablet-main {
                 padding: 16px;
             }
+            
+            /* PC에서 모바일 앱 느낌 유지 */
+            .app-container {
+                border-radius: 20px;
+                margin: 20px auto;
+                min-height: calc(100vh - 40px);
+                overflow: hidden;
+            }
+            
+            /* PC에서 탭바를 사이드바로 변경 */
+            .pc-sidebar {
+                display: flex;
+                flex-direction: column;
+                width: 80px;
+                background: white;
+                border-right: 1px solid #e2e8f0;
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100vh;
+                z-index: 1000;
+            }
+            
+            .pc-main-content {
+                margin-left: 80px;
+                padding: 0;
+            }
+            
+            .pc-tab-button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 16px 8px;
+                border: none;
+                background: transparent;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border-radius: 12px;
+                margin: 4px 8px;
+            }
+            
+            .pc-tab-button:hover {
+                background: #f1f5f9;
+            }
+            
+            .pc-tab-button.active {
+                background: #2563eb;
+                color: white;
+            }
+            
+            .pc-tab-icon {
+                font-size: 24px;
+                margin-bottom: 4px;
+            }
+            
+            .pc-tab-label {
+                font-size: 10px;
+                font-weight: 500;
+                text-align: center;
+            }
         }
         
         /* Mobile Optimizations */
@@ -102,8 +170,24 @@
                 display: none;
             }
             
+            .mobile-only {
+                display: block;
+            }
+            
             .mobile-full {
                 width: 100%;
+            }
+            
+            .app-container {
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-only {
+                display: none;
             }
         }
         
@@ -173,8 +257,37 @@
 <body>
     <!-- Ionic App -->
     <ion-app>
-        <!-- Main Content -->
-        <ion-content>
+        <!-- PC Sidebar (Desktop Only) -->
+        <div class="pc-sidebar mobile-hidden">
+            <div style="padding: 20px 0; text-align: center; border-bottom: 1px solid #e2e8f0;">
+                <div style="font-size: 24px; font-weight: bold; color: #2563eb;">수</div>
+            </div>
+            <button class="pc-tab-button" data-tab="home">
+                <div class="pc-tab-icon">🏠</div>
+                <div class="pc-tab-label">홈</div>
+            </button>
+            <button class="pc-tab-button" data-tab="about">
+                <div class="pc-tab-icon">ℹ️</div>
+                <div class="pc-tab-label">회사소개</div>
+            </button>
+            <button class="pc-tab-button" data-tab="services">
+                <div class="pc-tab-icon">💼</div>
+                <div class="pc-tab-label">서비스</div>
+            </button>
+            <button class="pc-tab-button" data-tab="portfolio">
+                <div class="pc-tab-icon">📁</div>
+                <div class="pc-tab-label">포트폴리오</div>
+            </button>
+            <button class="pc-tab-button" data-tab="contact">
+                <div class="pc-tab-icon">📞</div>
+                <div class="pc-tab-label">연락처</div>
+            </button>
+        </div>
+
+        <!-- App Container -->
+        <div class="app-container">
+            <!-- Main Content -->
+            <ion-content class="pc-main-content">
             <!-- Hero Section -->
             <section class="hero-section">
                 <div class="ion-padding">
@@ -355,29 +468,32 @@
             </div>
         </ion-content>
 
-        <!-- Bottom Tab Bar -->
-        <ion-tab-bar class="native-tab-bar" slot="bottom">
-            <ion-tab-button tab="home" class="native-tab-button">
-                <ion-icon name="home"></ion-icon>
-                <ion-label>홈</ion-label>
-            </ion-tab-button>
-            <ion-tab-button tab="about" class="native-tab-button">
-                <ion-icon name="information-circle"></ion-icon>
-                <ion-label>회사소개</ion-label>
-            </ion-tab-button>
-            <ion-tab-button tab="services" class="native-tab-button">
-                <ion-icon name="business"></ion-icon>
-                <ion-label>서비스</ion-label>
-            </ion-tab-button>
-            <ion-tab-button tab="portfolio" class="native-tab-button">
-                <ion-icon name="folder"></ion-icon>
-                <ion-label>포트폴리오</ion-label>
-            </ion-tab-button>
-            <ion-tab-button tab="contact" class="native-tab-button">
-                <ion-icon name="call"></ion-icon>
-                <ion-label>연락처</ion-label>
-            </ion-tab-button>
-        </ion-tab-bar>
+            </ion-content>
+
+            <!-- Bottom Tab Bar (Mobile Only) -->
+            <ion-tab-bar class="native-tab-bar mobile-only" slot="bottom">
+                <ion-tab-button tab="home" class="native-tab-button">
+                    <ion-icon name="home"></ion-icon>
+                    <ion-label>홈</ion-label>
+                </ion-tab-button>
+                <ion-tab-button tab="about" class="native-tab-button">
+                    <ion-icon name="information-circle"></ion-icon>
+                    <ion-label>회사소개</ion-label>
+                </ion-tab-button>
+                <ion-tab-button tab="services" class="native-tab-button">
+                    <ion-icon name="business"></ion-icon>
+                    <ion-label>서비스</ion-label>
+                </ion-tab-button>
+                <ion-tab-button tab="portfolio" class="native-tab-button">
+                    <ion-icon name="folder"></ion-icon>
+                    <ion-label>포트폴리오</ion-label>
+                </ion-tab-button>
+                <ion-tab-button tab="contact" class="native-tab-button">
+                    <ion-icon name="call"></ion-icon>
+                    <ion-label>연락처</ion-label>
+                </ion-tab-button>
+            </ion-tab-bar>
+        </div>
     </ion-app>
 
     <!-- Ionic Framework JavaScript -->
@@ -388,12 +504,25 @@
     <script>
         // Ionic App Initialization
         document.addEventListener('DOMContentLoaded', function() {
-            // Tab navigation
-            const tabButtons = document.querySelectorAll('ion-tab-button');
-            tabButtons.forEach(button => {
+            // Mobile tab navigation
+            const mobileTabButtons = document.querySelectorAll('ion-tab-button');
+            mobileTabButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const tab = this.getAttribute('tab');
                     scrollToSection(tab);
+                });
+            });
+            
+            // PC sidebar navigation
+            const pcTabButtons = document.querySelectorAll('.pc-tab-button');
+            pcTabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tab = this.getAttribute('data-tab');
+                    scrollToSection(tab);
+                    
+                    // Update PC sidebar active state
+                    pcTabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
                 });
             });
             
@@ -424,14 +553,22 @@
                 sections.forEach((section, index) => {
                     const rect = section.getBoundingClientRect();
                     if (rect.top <= 100 && rect.bottom >= 100) {
-                        // Remove active from all tabs
-                        tabButtons.forEach(btn => btn.classList.remove('tab-selected'));
-                        // Add active to corresponding tab
-                        if (index === 0) tabButtons[0].classList.add('tab-selected');
-                        else if (index === 1) tabButtons[1].classList.add('tab-selected');
-                        else if (index === 2) tabButtons[2].classList.add('tab-selected');
-                        else if (index === 3) tabButtons[3].classList.add('tab-selected');
-                        else if (index === 4) tabButtons[4].classList.add('tab-selected');
+                        // Remove active from all mobile tabs
+                        mobileTabButtons.forEach(btn => btn.classList.remove('tab-selected'));
+                        // Add active to corresponding mobile tab
+                        if (index === 0) mobileTabButtons[0].classList.add('tab-selected');
+                        else if (index === 1) mobileTabButtons[1].classList.add('tab-selected');
+                        else if (index === 2) mobileTabButtons[2].classList.add('tab-selected');
+                        else if (index === 3) mobileTabButtons[3].classList.add('tab-selected');
+                        else if (index === 4) mobileTabButtons[4].classList.add('tab-selected');
+                        
+                        // Update PC sidebar
+                        pcTabButtons.forEach(btn => btn.classList.remove('active'));
+                        if (index === 0) pcTabButtons[0].classList.add('active');
+                        else if (index === 1) pcTabButtons[1].classList.add('active');
+                        else if (index === 2) pcTabButtons[2].classList.add('active');
+                        else if (index === 3) pcTabButtons[3].classList.add('active');
+                        else if (index === 4) pcTabButtons[4].classList.add('active');
                     }
                 });
             }
@@ -441,6 +578,9 @@
             
             // Initialize
             updateActiveTab();
+            
+            // Set initial active state for PC sidebar
+            pcTabButtons[0].classList.add('active');
         });
     </script>
 </body>

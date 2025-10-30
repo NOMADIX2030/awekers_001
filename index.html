@@ -7,222 +7,363 @@
     <meta name="description" content="아커스는 혁신적인 비즈니스 솔루션을 제공하는 전문 기업입니다. 웹 개발, 디지털 마케팅, 컨설팅 서비스를 제공합니다.">
     <meta name="keywords" content="아커스, 비즈니스 솔루션, 웹개발, 디지털마케팅, 컨설팅">
     
-    <!-- Pretendard 폰트 -->
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Pretendard', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Pretendard Font -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Custom Styles -->
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
-<body>
-    <!-- 헤더 -->
-    <header class="ai_header">
-        <nav class="ai_nav">
-            <div class="ai_nav_container">
-                <div class="ai_logo">
-                    <h1>아커스</h1>
+<body class="font-sans text-gray-900">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-primary-600">아커스</h1>
                 </div>
-                <ul class="ai_nav_menu">
-                    <li><a href="#home" class="ai_nav_link">홈</a></li>
-                    <li><a href="#about" class="ai_nav_link">회사소개</a></li>
-                    <li><a href="#services" class="ai_nav_link">서비스</a></li>
-                    <li><a href="#portfolio" class="ai_nav_link">포트폴리오</a></li>
-                    <li><a href="#contact" class="ai_nav_link">연락처</a></li>
-                </ul>
-                <div class="ai_mobile_menu_toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">홈</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">회사소개</a>
+                    <a href="#services" class="nav-link text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">서비스</a>
+                    <a href="#portfolio" class="nav-link text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">포트폴리오</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">연락처</a>
+                </nav>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-primary-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
+                        <span class="sr-only">메뉴 열기</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </nav>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+                <a href="#home" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md">홈</a>
+                <a href="#about" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md">회사소개</a>
+                <a href="#services" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md">서비스</a>
+                <a href="#portfolio" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md">포트폴리오</a>
+                <a href="#contact" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md">연락처</a>
+            </div>
+        </div>
     </header>
 
-    <!-- 메인 콘텐츠 -->
+    <!-- Main Content -->
     <main>
-        <!-- 홈 섹션 -->
-        <section id="home" class="ai_hero">
-            <div class="ai_hero_container">
-                <div class="ai_hero_content">
-                    <h2 class="ai_hero_title">혁신적인 비즈니스 솔루션</h2>
-                    <p class="ai_hero_subtitle">아커스와 함께 디지털 시대의 성공을 만들어가세요</p>
-                    <div class="ai_hero_buttons">
-                        <a href="#services" class="ai_btn ai_btn_primary">서비스 보기</a>
-                        <a href="#contact" class="ai_btn ai_btn_secondary">문의하기</a>
+        <!-- Hero Section -->
+        <section id="home" class="gradient-bg text-white pt-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <h2 class="text-4xl md:text-6xl font-bold leading-tight">
+                            혁신적인<br>
+                            <span class="text-yellow-300">비즈니스 솔루션</span>
+                        </h2>
+                        <p class="text-xl text-gray-200 leading-relaxed">
+                            아커스와 함께 디지털 시대의 성공을 만들어가세요.<br>
+                            전문적인 서비스로 비즈니스의 미래를 설계합니다.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#services" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-lg text-primary-600 bg-white hover:bg-gray-50 transition-colors">
+                                서비스 보기
+                            </a>
+                            <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-base font-medium rounded-lg text-white hover:bg-white hover:text-primary-600 transition-colors">
+                                문의하기
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="ai_hero_image">
-                    <div class="ai_hero_placeholder">
-                        <span>비즈니스 이미지</span>
+                    <div class="flex justify-center">
+                        <div class="w-full max-w-md h-80 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20">
+                            <span class="text-2xl text-white/80">비즈니스 이미지</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 회사소개 섹션 -->
-        <section id="about" class="ai_about">
-            <div class="ai_container">
-                <div class="ai_section_header">
-                    <h2 class="ai_section_title">회사소개</h2>
-                    <p class="ai_section_subtitle">아커스는 고객의 성공을 위한 최고의 솔루션을 제공합니다</p>
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">회사소개</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        아커스는 고객의 성공을 위한 최고의 솔루션을 제공합니다
+                    </p>
                 </div>
-                <div class="ai_about_content">
-                    <div class="ai_about_text">
-                        <h3>우리의 미션</h3>
-                        <p>디지털 혁신을 통해 고객의 비즈니스 가치를 극대화하고, 지속가능한 성장을 지원하는 것이 아커스의 미션입니다.</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">우리의 미션</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                디지털 혁신을 통해 고객의 비즈니스 가치를 극대화하고, 
+                                지속가능한 성장을 지원하는 것이 아커스의 미션입니다.
+                            </p>
+                        </div>
                         
-                        <h3>핵심 가치</h3>
-                        <ul>
-                            <li>혁신과 창의성</li>
-                            <li>고객 중심의 서비스</li>
-                            <li>품질과 신뢰성</li>
-                            <li>지속가능한 성장</li>
-                        </ul>
-                    </div>
-                    <div class="ai_about_stats">
-                        <div class="ai_stat_item">
-                            <div class="ai_stat_number">50+</div>
-                            <div class="ai_stat_label">완료 프로젝트</div>
-                        </div>
-                        <div class="ai_stat_item">
-                            <div class="ai_stat_number">100%</div>
-                            <div class="ai_stat_label">고객 만족도</div>
-                        </div>
-                        <div class="ai_stat_item">
-                            <div class="ai_stat_number">5년</div>
-                            <div class="ai_stat_label">업계 경험</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 서비스 섹션 -->
-        <section id="services" class="ai_services">
-            <div class="ai_container">
-                <div class="ai_section_header">
-                    <h2 class="ai_section_title">서비스</h2>
-                    <p class="ai_section_subtitle">전문적인 서비스로 고객의 성공을 지원합니다</p>
-                </div>
-                <div class="ai_services_grid">
-                    <div class="ai_service_card">
-                        <div class="ai_service_icon">💻</div>
-                        <h3>웹 개발</h3>
-                        <p>반응형 웹사이트와 웹 애플리케이션을 전문적으로 개발합니다.</p>
-                        <ul>
-                            <li>반응형 웹사이트</li>
-                            <li>웹 애플리케이션</li>
-                            <li>E-commerce 솔루션</li>
-                        </ul>
-                    </div>
-                    <div class="ai_service_card">
-                        <div class="ai_service_icon">📱</div>
-                        <h3>디지털 마케팅</h3>
-                        <p>효과적인 디지털 마케팅 전략으로 비즈니스 성장을 도모합니다.</p>
-                        <ul>
-                            <li>SEO 최적화</li>
-                            <li>소셜미디어 마케팅</li>
-                            <li>콘텐츠 마케팅</li>
-                        </ul>
-                    </div>
-                    <div class="ai_service_card">
-                        <div class="ai_service_icon">🎯</div>
-                        <h3>비즈니스 컨설팅</h3>
-                        <p>전문적인 컨설팅을 통해 비즈니스 전략을 수립합니다.</p>
-                        <ul>
-                            <li>디지털 전환</li>
-                            <li>프로세스 개선</li>
-                            <li>전략 수립</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 포트폴리오 섹션 -->
-        <section id="portfolio" class="ai_portfolio">
-            <div class="ai_container">
-                <div class="ai_section_header">
-                    <h2 class="ai_section_title">포트폴리오</h2>
-                    <p class="ai_section_subtitle">성공적인 프로젝트 사례를 확인해보세요</p>
-                </div>
-                <div class="ai_portfolio_grid">
-                    <div class="ai_portfolio_item">
-                        <div class="ai_portfolio_image">
-                            <div class="ai_portfolio_placeholder">프로젝트 1</div>
-                        </div>
-                        <div class="ai_portfolio_content">
-                            <h3>E-commerce 플랫폼</h3>
-                            <p>온라인 쇼핑몰 구축 및 운영</p>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">핵심 가치</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-primary-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-gray-600">혁신과 창의성</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-primary-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-gray-600">고객 중심의 서비스</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-primary-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-gray-600">품질과 신뢰성</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-primary-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-gray-600">지속가능한 성장</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="ai_portfolio_item">
-                        <div class="ai_portfolio_image">
-                            <div class="ai_portfolio_placeholder">프로젝트 2</div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                            <div class="text-3xl font-bold text-primary-600 mb-2">50+</div>
+                            <div class="text-gray-600">완료 프로젝트</div>
                         </div>
-                        <div class="ai_portfolio_content">
-                            <h3>기업 웹사이트</h3>
-                            <p>반응형 기업 홈페이지 개발</p>
+                        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                            <div class="text-3xl font-bold text-primary-600 mb-2">100%</div>
+                            <div class="text-gray-600">고객 만족도</div>
                         </div>
-                    </div>
-                    <div class="ai_portfolio_item">
-                        <div class="ai_portfolio_image">
-                            <div class="ai_portfolio_placeholder">프로젝트 3</div>
-                        </div>
-                        <div class="ai_portfolio_content">
-                            <h3>모바일 앱</h3>
-                            <p>크로스 플랫폼 모바일 애플리케이션</p>
+                        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                            <div class="text-3xl font-bold text-primary-600 mb-2">5년</div>
+                            <div class="text-gray-600">업계 경험</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 연락처 섹션 -->
-        <section id="contact" class="ai_contact">
-            <div class="ai_container">
-                <div class="ai_section_header">
-                    <h2 class="ai_section_title">연락처</h2>
-                    <p class="ai_section_subtitle">프로젝트 문의나 상담이 필요하시면 언제든 연락주세요</p>
+        <!-- Services Section -->
+        <section id="services" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">서비스</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        전문적인 서비스로 고객의 성공을 지원합니다
+                    </p>
                 </div>
-                <div class="ai_contact_content">
-                    <div class="ai_contact_info">
-                        <div class="ai_contact_item">
-                            <div class="ai_contact_icon">📧</div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="text-4xl mb-6">💻</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">웹 개발</h3>
+                        <p class="text-gray-600 mb-6">
+                            반응형 웹사이트와 웹 애플리케이션을 전문적으로 개발합니다.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="text-gray-600">• 반응형 웹사이트</li>
+                            <li class="text-gray-600">• 웹 애플리케이션</li>
+                            <li class="text-gray-600">• E-commerce 솔루션</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="text-4xl mb-6">📱</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">디지털 마케팅</h3>
+                        <p class="text-gray-600 mb-6">
+                            효과적인 디지털 마케팅 전략으로 비즈니스 성장을 도모합니다.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="text-gray-600">• SEO 최적화</li>
+                            <li class="text-gray-600">• 소셜미디어 마케팅</li>
+                            <li class="text-gray-600">• 콘텐츠 마케팅</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="text-4xl mb-6">🎯</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">비즈니스 컨설팅</h3>
+                        <p class="text-gray-600 mb-6">
+                            전문적인 컨설팅을 통해 비즈니스 전략을 수립합니다.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="text-gray-600">• 디지털 전환</li>
+                            <li class="text-gray-600">• 프로세스 개선</li>
+                            <li class="text-gray-600">• 전략 수립</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">포트폴리오</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        성공적인 프로젝트 사례를 확인해보세요
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <div class="h-48 bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-500">프로젝트 1</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">E-commerce 플랫폼</h3>
+                            <p class="text-gray-600">온라인 쇼핑몰 구축 및 운영</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <div class="h-48 bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-500">프로젝트 2</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">기업 웹사이트</h3>
+                            <p class="text-gray-600">반응형 기업 홈페이지 개발</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <div class="h-48 bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-500">프로젝트 3</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">모바일 앱</h3>
+                            <p class="text-gray-600">크로스 플랫폼 모바일 애플리케이션</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">연락처</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        프로젝트 문의나 상담이 필요하시면 언제든 연락주세요
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
                             <div>
-                                <h3>이메일</h3>
-                                <p>contact@awekers.com</p>
+                                <h3 class="text-lg font-semibold text-gray-900">이메일</h3>
+                                <p class="text-gray-600">contact@awekers.com</p>
                             </div>
                         </div>
-                        <div class="ai_contact_item">
-                            <div class="ai_contact_icon">📞</div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                            </div>
                             <div>
-                                <h3>전화</h3>
-                                <p>02-1234-5678</p>
+                                <h3 class="text-lg font-semibold text-gray-900">전화</h3>
+                                <p class="text-gray-600">02-1234-5678</p>
                             </div>
                         </div>
-                        <div class="ai_contact_item">
-                            <div class="ai_contact_icon">📍</div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
                             <div>
-                                <h3>주소</h3>
-                                <p>서울특별시 강남구 테헤란로 123</p>
+                                <h3 class="text-lg font-semibold text-gray-900">주소</h3>
+                                <p class="text-gray-600">서울특별시 강남구 테헤란로 123</p>
                             </div>
                         </div>
                     </div>
-                    <div class="ai_contact_form">
-                        <form>
-                            <div class="ai_form_group">
-                                <input type="text" placeholder="이름" required>
+                    
+                    <div class="bg-gray-50 p-8 rounded-xl">
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">이름</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
                             </div>
-                            <div class="ai_form_group">
-                                <input type="email" placeholder="이메일" required>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">이메일</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
                             </div>
-                            <div class="ai_form_group">
-                                <input type="text" placeholder="제목" required>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">제목</label>
+                                <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
                             </div>
-                            <div class="ai_form_group">
-                                <textarea placeholder="메시지" rows="5" required></textarea>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">메시지</label>
+                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"></textarea>
                             </div>
-                            <button type="submit" class="ai_btn ai_btn_primary">문의하기</button>
+                            <button type="submit" class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                                문의하기
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -230,22 +371,22 @@
         </section>
     </main>
 
-    <!-- 푸터 -->
-    <footer class="ai_footer">
-        <div class="ai_container">
-            <div class="ai_footer_content">
-                <div class="ai_footer_logo">
-                    <h3>아커스</h3>
-                    <p>혁신적인 비즈니스 솔루션</p>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-2">아커스</h3>
+                    <p class="text-gray-400">혁신적인 비즈니스 솔루션</p>
                 </div>
-                <div class="ai_footer_links">
-                    <a href="#about">회사소개</a>
-                    <a href="#services">서비스</a>
-                    <a href="#portfolio">포트폴리오</a>
-                    <a href="#contact">연락처</a>
+                <div class="flex flex-wrap gap-6">
+                    <a href="#about" class="text-gray-400 hover:text-white transition-colors">회사소개</a>
+                    <a href="#services" class="text-gray-400 hover:text-white transition-colors">서비스</a>
+                    <a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">포트폴리오</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors">연락처</a>
                 </div>
             </div>
-            <div class="ai_footer_bottom">
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
                 <p>&copy; 2024 아커스. All rights reserved.</p>
             </div>
         </div>

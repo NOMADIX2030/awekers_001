@@ -1,19 +1,26 @@
-// DOM이 로드된 후 실행
+// Modern JavaScript with Tailwind CSS
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 모바일 메뉴 토글
-    const mobileMenuToggle = document.querySelector('.ai_mobile_menu_toggle');
-    const navMenu = document.querySelector('.ai_nav_menu');
+    // Mobile menu toggle
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
     
-    if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('ai_nav_menu_active');
-            mobileMenuToggle.classList.toggle('ai_mobile_menu_toggle_active');
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            
+            // Update button icon
+            const icon = mobileMenuButton.querySelector('svg');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+            }
         });
     }
     
-    // 스무스 스크롤 네비게이션
-    const navLinks = document.querySelectorAll('.ai_nav_link');
+    // Smooth scroll navigation
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -23,40 +30,43 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const headerHeight = document.querySelector('.ai_header').offsetHeight;
+                const headerHeight = document.querySelector('header').offsetHeight;
                 const targetPosition = targetSection.offsetTop - headerHeight;
                 
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
-            }
-            
-            // 모바일 메뉴 닫기
-            if (navMenu.classList.contains('ai_nav_menu_active')) {
-                navMenu.classList.remove('ai_nav_menu_active');
-                mobileMenuToggle.classList.remove('ai_mobile_menu_toggle_active');
+                
+                // Close mobile menu if open
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    const icon = mobileMenuButton.querySelector('svg');
+                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+                }
             }
         });
     });
     
-    // 헤더 스크롤 효과
-    const header = document.querySelector('.ai_header');
+    // Header scroll effect
+    const header = document.querySelector('header');
     let lastScrollTop = 0;
     
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         if (scrollTop > 100) {
-            header.classList.add('ai_header_scrolled');
+            header.classList.add('bg-white/98', 'shadow-lg');
+            header.classList.remove('bg-white/95');
         } else {
-            header.classList.remove('ai_header_scrolled');
+            header.classList.add('bg-white/95');
+            header.classList.remove('bg-white/98', 'shadow-lg');
         }
         
         lastScrollTop = scrollTop;
     });
     
-    // 섹션별 활성 네비게이션 표시
+    // Active navigation highlighting
     const sections = document.querySelectorAll('section[id]');
     
     function updateActiveNav() {
@@ -66,14 +76,24 @@ document.addEventListener('DOMContentLoaded', function() {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
-            const navLink = document.querySelector(`.ai_nav_link[href="#${sectionId}"]`);
+            const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+            const mobileNavLink = document.querySelector(`.mobile-nav-link[href="#${sectionId}"]`);
             
             if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                // 모든 링크에서 활성 클래스 제거
-                navLinks.forEach(link => link.classList.remove('ai_nav_link_active'));
-                // 현재 섹션의 링크에 활성 클래스 추가
+                // Remove active class from all links
+                navLinks.forEach(link => {
+                    link.classList.remove('text-primary-600', 'font-semibold');
+                    link.classList.add('text-gray-600');
+                });
+                
+                // Add active class to current section links
                 if (navLink) {
-                    navLink.classList.add('ai_nav_link_active');
+                    navLink.classList.add('text-primary-600', 'font-semibold');
+                    navLink.classList.remove('text-gray-600');
+                }
+                if (mobileNavLink) {
+                    mobileNavLink.classList.add('text-primary-600', 'font-semibold');
+                    mobileNavLink.classList.remove('text-gray-600');
                 }
             }
         });
@@ -81,21 +101,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', updateActiveNav);
     
-    // 폼 제출 처리
-    const contactForm = document.querySelector('.ai_contact_form form');
+    // Form submission
+    const contactForm = document.querySelector('form');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // 폼 데이터 수집
+            // Get form data
             const formData = new FormData(this);
-            const name = this.querySelector('input[type="text"]').value;
-            const email = this.querySelector('input[type="email"]').value;
-            const subject = this.querySelectorAll('input[type="text"]')[1].value;
-            const message = this.querySelector('textarea').value;
+            const name = this.querySelector('#name').value;
+            const email = this.querySelector('#email').value;
+            const subject = this.querySelector('#subject').value;
+            const message = this.querySelector('#message').value;
             
-            // 간단한 유효성 검사
+            // Simple validation
             if (!name || !email || !subject || !message) {
                 alert('모든 필드를 입력해주세요.');
                 return;
@@ -106,19 +126,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // 성공 메시지 (실제로는 서버로 전송)
+            // Success message (in real app, send to server)
             alert('문의가 성공적으로 전송되었습니다. 빠른 시일 내에 연락드리겠습니다.');
             this.reset();
         });
     }
     
-    // 이메일 유효성 검사 함수
+    // Email validation function
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
     
-    // 스크롤 애니메이션 (Intersection Observer)
+    // Intersection Observer for animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -127,19 +147,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('ai_animate_in');
+                entry.target.classList.add('animate-fade-in');
             }
         });
     }, observerOptions);
     
-    // 애니메이션 대상 요소들 관찰
-    const animateElements = document.querySelectorAll('.ai_service_card, .ai_portfolio_item, .ai_about_text, .ai_contact_item');
+    // Observe elements for animation
+    const animateElements = document.querySelectorAll('.bg-white, .gradient-bg > div');
     animateElements.forEach(el => {
         observer.observe(el);
     });
     
-    // 통계 숫자 카운트 애니메이션
-    const statNumbers = document.querySelectorAll('.ai_stat_number');
+    // Counter animation for stats
+    const statNumbers = document.querySelectorAll('.text-3xl.font-bold.text-primary-600');
     
     function animateNumbers() {
         statNumbers.forEach(stat => {
@@ -158,8 +178,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 통계 섹션이 보일 때 숫자 애니메이션 실행
-    const statsSection = document.querySelector('.ai_about_stats');
+    // Trigger counter animation when stats section is visible
+    const statsSection = document.querySelector('#about .grid.grid-cols-1.sm\\:grid-cols-3');
     if (statsSection) {
         const statsObserver = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
@@ -173,42 +193,34 @@ document.addEventListener('DOMContentLoaded', function() {
         statsObserver.observe(statsSection);
     }
     
-    // 버튼 호버 효과
-    const buttons = document.querySelectorAll('.ai_btn');
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
-        });
+    // Add fade-in animation CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
         
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
-    
-    // 카드 호버 효과 강화
-    const cards = document.querySelectorAll('.ai_service_card, .ai_portfolio_item');
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
-    
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    `;
+    document.head.appendChild(style);
 });
 
-// 페이지 로드 완료 후 실행
+// Page load complete
 window.addEventListener('load', function() {
-    // 로딩 애니메이션 (필요시)
-    document.body.classList.add('ai_loaded');
-    
-    // 초기 스크롤 위치 설정
+    // Initial scroll position handling
     if (window.location.hash) {
         const targetSection = document.querySelector(window.location.hash);
         if (targetSection) {
-            const headerHeight = document.querySelector('.ai_header').offsetHeight;
+            const headerHeight = document.querySelector('header').offsetHeight;
             const targetPosition = targetSection.offsetTop - headerHeight;
             
             setTimeout(() => {
